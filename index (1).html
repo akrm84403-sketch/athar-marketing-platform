@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Athar: integrated marketing content production. Content writing, translation, and voiceover.">
+  <meta name="theme-color" content="#070e35">
+  <title>Athar | Integrated Marketing Content Production</title>
+
+  <!-- Font: to change it, pick one from fonts.google.com, replace this link and the font-family in body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Colors: change the codes here and the whole site updates */
+    :root {
+      --navy: #070e35;     /* main dark color (cover background) */
+      --yellow: #ffd500;   /* logo yellow */
+      --orange: #ff3d00;   /* logo orange-red */
+      --blue: #2433ff;     /* cover blue accent */
+      --white: #ffffff;
+      --paper: #f4f5fb;    /* light section background */
+      --ink-soft: #4a5072; /* secondary text on light backgrounds */
+    }
+
+    body {
+      font-family: 'Tajawal', Arial, sans-serif;
+      background: var(--paper);
+      color: var(--navy);
+      line-height: 1.75;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { width: 90%; max-width: 1100px; margin: auto; }
+
+    /* ---------- Header ---------- */
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand svg { width: 44px; height: 44px; }
+    .brand span {
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: .22em;
+    }
+
+    nav { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+    nav a { font-weight: 500; opacity: .9; }
+    nav a:hover { color: var(--yellow); opacity: 1; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 999px;
+      transition: transform .15s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-yellow, nav a.btn-yellow:hover { background: var(--yellow); color: var(--navy); opacity: 1; }
+    .btn-orange { background: var(--orange); color: var(--white); }
+    .btn-outline { border: 2px solid var(--white); color: var(--white); background: transparent; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      padding: 90px 0 100px;
+    }
+
+    .hero::before {            /* orange ring, top right */
+      content: "";
+      position: absolute;
+      top: -130px;
+      right: -110px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 44px solid var(--orange);
+    }
+
+    .hero::after {             /* blue circle, bottom left */
+      content: "";
+      position: absolute;
+      bottom: -190px;
+      left: -150px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .hero .dot {               /* yellow circle on top of the blue one */
+      position: absolute;
+      bottom: -70px;
+      left: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--yellow);
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+    .hero h1 em { font-style: normal; color: var(--yellow); }
+
+    .hero .tagline {
+      color: #ff7a52;
+      font-size: clamp(17px, 2.4vw, 22px);
+      font-weight: 500;
+      letter-spacing: .03em;
+      margin-bottom: 14px;
+    }
+
+    .hero p.lead { max-width: 560px; margin-bottom: 26px; opacity: .9; }
+
+    .pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+    .pill {
+      font-weight: 700;
+      padding: 6px 20px;
+      border-radius: 999px;
+      font-size: 15px;
+    }
+    .pill.y { background: var(--yellow); color: var(--navy); }
+    .pill.w { background: var(--white); color: var(--navy); }
+    .pill.o { background: var(--orange); color: var(--white); }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .hero-logo { width: clamp(150px, 20vw, 230px); --tile: var(--yellow); }
+    .hero-logo svg { width: 100%; height: auto; display: block; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 70px 0; }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .section-sub { color: var(--ink-soft); max-width: 560px; margin-bottom: 36px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 28px;
+      border-radius: 18px;
+      border-top: 6px solid var(--yellow);
+    }
+    .card.c-blue { border-top-color: var(--blue); }
+    .card.c-orange { border-top-color: var(--orange); }
+
+    .card h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+    .card p { color: var(--ink-soft); }
+
+    /* Samples */
+    .tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--navy);
+      color: var(--yellow);
+      padding: 0 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .card p.sample-text {
+      border-left: 4px solid var(--orange);
+      padding-left: 14px;
+      color: var(--navy);
+    }
+
+    .pair p.ar {
+      direction: rtl;
+      text-align: right;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+    .pair p.en {
+      border-top: 1px dashed #b9bdd6;
+      padding-top: 8px;
+      color: var(--navy);
+    }
+
+    .card audio { width: 100%; margin-top: 10px; }
+
+    /* About */
+    .about { background: var(--navy); color: var(--white); }
+    .about .section-title span { color: var(--yellow); }
+    .about p { max-width: 720px; opacity: .92; }
+
+    /* Contact */
+    .contact-form {
+      max-width: 640px;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 18px;
+      border-top: 6px solid var(--orange);
+    }
+
+    label { display: block; margin: 14px 0 5px; font-weight: 700; }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #dfe2f0;
+      border-radius: 10px;
+      font: inherit;
+      background: var(--white);
+      color: var(--navy);
+    }
+    textarea { min-height: 130px; resize: vertical; }
+
+    .contact-form button { margin-top: 22px; width: 100%; }
+
+    /* Footer + WhatsApp */
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 28px 10px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer p { opacity: .85; }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: var(--white);
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      box-shadow: 0 4px 14px #0003;
+      z-index: 30;
+    }
+
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding: 60px 0 90px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-logo { order: -1; width: 90px; }
+      .hero::before { width: 170px; height: 170px; border-width: 30px; top: -90px; right: -70px; }
+      .nav { justify-content: center; }
+      nav { justify-content: center; gap: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Reusable logo mark (drawn in SVG, no image file needed) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 100 100">
+      <rect width="100" height="100" rx="28" fill="var(--tile, #ff3d00)"/>
+      <path d="M24 66 A26 26 0 0 1 76 66" fill="none" stroke="#070e35" stroke-opacity=".55" stroke-width="5" stroke-linecap="round"/>
+      <path d="M33 66 A17 17 0 0 1 67 66" fill="none" stroke="#070e35" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="50" cy="68" r="8" fill="#070e35"/>
+      <polygon points="50,20 54,29 50,38 46,29" fill="#070e35"/>
+    </symbol>
+  </svg>
+
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="Athar home">
+        <svg><use href="#mark"/></svg>
+        <span>ATHAR</span>
+      </a>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#samples">Samples</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn btn-yellow">Request a Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <span class="dot"></span>
+      <div class="container hero-inner">
+        <div>
+          <h1>Every Word<br>Leaves an <em>Impact.</em></h1>
+          <p class="tagline">Integrated Marketing Content Production</p>
+          <p class="lead">
+            Athar helps your brand reach its audience with creative content,
+            accurate translation, and voiceover that fits your identity.
+          </p>
+
+          <div class="pills">
+            <span class="pill y">Content Writing</span>
+            <span class="pill w">Translation</span>
+            <span class="pill o">Voiceover</span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-yellow">Request a Service</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+          </div>
+        </div>
+
+        <div class="hero-logo" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><use href="#mark"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-sub">Three core services that cover your marketing content from the first draft to the final voice.</p>
+
+        <div class="grid">
+          <article class="card">
+            <h3>✍️ Content Writing</h3>
+            <p>
+              Marketing posts, articles, product descriptions, and ad copy
+              written for your audience and shaped around your brand identity.
+            </p>
+          </article>
+
+          <article class="card c-blue">
+            <h3>🌍 Translation</h3>
+            <p>
+              Translation between Arabic and English, with attention to
+              accurate meaning, natural wording, and a clear message.
+            </p>
+          </article>
+
+          <article class="card c-orange">
+            <h3>🎙️ Voiceover</h3>
+            <p>
+              Voiceovers for ads, videos, and digital content, matched to
+              your tone and your audience.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="samples" style="padding-top:0">
+      <div class="container">
+        <h2 class="section-title">Work Samples</h2>
+        <p class="section-sub">Examples that show how each service looks. Real client work will be added here as it becomes available.</p>
+
+        <div class="grid">
+          <!-- Writing sample: replace with your real text -->
+          <article class="card">
+            <span class="tag">Sample</span>
+            <h3>Marketing Post</h3>
+            <p class="sample-text">
+              Mornings start better with carefully roasted coffee.
+              Stop by for your first cup and let your day begin with impact.
+            </p>
+          </article>
+
+          <!-- Translation sample: replace with your real text -->
+          <article class="card c-blue pair">
+            <span class="tag">Sample</span>
+            <h3>Translation</h3>
+            <p class="ar">نصنع محتوى يعبّر عن هويتك ويصل إلى جمهورك.</p>
+            <p class="en">We create content that reflects your identity and reaches your audience.</p>
+          </article>
+
+          <!-- Voiceover sample -->
+          <article class="card c-orange">
+            <span class="tag">Sample</span>
+            <h3>Voiceover</h3>
+            <p>Add a real recording here and an audio player will appear.</p>
+            <!--
+              To add your recording: upload the file to a folder named "samples" in the repository,
+              then remove the comment markers around the next line and fix the file name:
+              <audio controls src="samples/voice.mp3"></audio>
+            -->
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">About <span>Athar</span></h2>
+        <p>
+          Athar is a marketing content studio that brings together the right
+          words, clear translation, and a voice that connects. We help
+          projects present their message in a distinctive way that feels
+          close to their audience.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Request a Service</h2>
+        <p class="section-sub">Tell us about your project and we will reply on WhatsApp to agree on the details.</p>
+
+        <form class="contact-form" id="requestForm">
+          <label for="name">Name</label>
+          <input id="name" name="name" required placeholder="Your name">
+
+          <label for="service">Service needed</label>
+          <select id="service" name="service" required>
+            <option value="">Choose a service</option>
+            <option>Content Writing</option>
+            <option>Translation</option>
+            <option>Voiceover</option>
+            <option>More than one service</option>
+          </select>
+
+          <label for="details">Project details</label>
+          <textarea id="details" name="details" required
+                    placeholder="Tell us what you need"></textarea>
+
+          <button type="submit" class="btn btn-orange">Send request via WhatsApp</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>ATHAR</strong> | Integrated Marketing Content Production</p>
+    <p>Words that make a difference, and an impact that stays.</p>
+    <p>© 2026 Athar. All rights reserved.</p>
+  </footer>
+
+  <a class="whatsapp"
+     href="https://wa.me/970597104030"
+     target="_blank"
+     rel="noopener noreferrer">
+    WhatsApp
+  </a>
+
+  <script>
+    const form = document.getElementById("requestForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const service = document.getElementById("service").value;
+      const details = document.getElementById("details").value.trim();
+
+      const message =
+        "Hello Athar, I would like to request a service.\n" +
+        "Name: " + name + "\n" +
+        "Service: " + service + "\n" +
+        "Project details: " + details;
+
+      const whatsappURL =
+        "https://wa.me/970597104030?text=" +
+        encodeURIComponent(message);
+
+      window.open(whatsappURL, "_blank");
+    });
+  </script>
+
+</body>
+</html>
